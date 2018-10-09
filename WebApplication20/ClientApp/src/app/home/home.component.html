@@ -1,0 +1,15 @@
+<div style="text-align: center;margin: 0 auto">
+  <h1>Search for your favorite Git repositories</h1>
+  <input kendoTextBox [(ngModel)]="keyword" (keyup.enter)="OnSearch()"/>
+  <button kendoButton (click) ="OnSearch()">Search</button>
+    <kendo-scrollview *ngIf ="search && repositoryItems.length > 0" [data]="repositoryItems"
+                      [width]="width"
+                      [height]="height"
+                      [arrows]="true"
+                      [pageable]="true">
+      <ng-template let-item="item">
+        <h2 class="demo-title">{{item.name}} <a [routerLink]="" (click) ="OnAddToBookmarks(item)"><fa name="bookmark"></fa></a></h2>
+        <img src='{{item.ownerAvatalUrl}}' alt='{{item.name}}' [ngStyle]="{minWidth: width}" draggable="false" />
+      </ng-template>
+    </kendo-scrollview>
+</div>
